@@ -51,7 +51,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 local function apply_transparency()
   local hl_groups = {
     "Normal",
-    "NormalFloat",
     "NormalNC",
     "SignColumn",
     "LineNr",
@@ -66,7 +65,6 @@ local function apply_transparency()
     "SnacksNormal",
     "SnacksNormalNC",
     "SnacksWinBar",
-    "SnacksBackdrop",
     "SnacksExplorerNormal",
     "SnacksExplorerBorder",
     "SnacksExplorerTitle",
@@ -105,11 +103,14 @@ local function apply_transparency()
     "TelescopePreviewNormal",
     "TelescopePreviewBorder",
     -- Floating windows
+    "NormalFloat",
     "FloatBorder",
     "FloatTitle",
     "Pmenu",
     "PmenuSbar",
     "PmenuThumb",
+    -- Snacks backdrop
+    "SnacksBackdrop",
   }
   for _, group in ipairs(hl_groups) do
     vim.cmd(string.format("highlight %s guibg=NONE ctermbg=NONE", group))
@@ -185,8 +186,6 @@ vim.api.nvim_create_autocmd({ "FileType", "BufWinEnter" }, {
   callback = function()
     vim.defer_fn(function()
       apply_transparency()
-      -- Force winblend on current window
-      vim.wo.winblend = 0
     end, 10)
   end,
 })

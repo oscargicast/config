@@ -83,41 +83,37 @@ keybinds clear-defaults=true {
         bind "tab" { MovePane; }
     }
     scroll {
-        bind "Ctrl left" { MoveFocusOrTab "left"; SwitchToMode "locked"; }
-        bind "Ctrl down" { MoveFocus "down"; SwitchToMode "locked"; }
-        bind "Ctrl up" { MoveFocus "up"; SwitchToMode "locked"; }
-        bind "Ctrl right" { MoveFocusOrTab "right"; SwitchToMode "locked"; }
         bind "e" { EditScrollback; SwitchToMode "locked"; }
         bind "f" { SwitchToMode "entersearch"; SearchInput 0; }
-        bind "Ctrl h" {
+        bind "Alt h" {
             MessagePlugin "file:~/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus_or_tab";
                 payload "left";
-                move_mod "ctrl";
+                move_mod "alt";
             };
             SwitchToMode "locked";
         }
-        bind "Ctrl j" {
+        bind "Alt j" {
             MessagePlugin "file:~/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus";
                 payload "down";
-                move_mod "ctrl";
+                move_mod "alt";
             };
             SwitchToMode "locked";
         }
-        bind "Ctrl k" {
+        bind "Alt k" {
             MessagePlugin "file:~/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus";
                 payload "up";
-                move_mod "ctrl";
+                move_mod "alt";
             };
             SwitchToMode "locked";
         }
-        bind "Ctrl l" {
+        bind "Alt l" {
             MessagePlugin "file:~/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus_or_tab";
                 payload "right";
-                move_mod "ctrl";
+                move_mod "alt";
             };
             SwitchToMode "locked";
         }
@@ -156,10 +152,10 @@ keybinds clear-defaults=true {
         }
     }
     shared_among "normal" "locked" {
-        bind "Ctrl p" { TogglePanePinned; }
-        bind "Ctrl x" { CloseFocus; }
-        bind "Ctrl Z" { ToggleFocusFullscreen; }
-        bind "Ctrl z" {
+        bind "Alt p" { TogglePanePinned; }
+        bind "Alt x" { CloseFocus; }
+        bind "Alt Z" { ToggleFocusFullscreen; }
+        bind "Alt z" {
           TogglePaneEmbedOrFloating;
           ToggleFocusFullscreen;
         }
@@ -168,12 +164,12 @@ keybinds clear-defaults=true {
             LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij_forgot.wasm" {
             "lock"                  "ctrl + g"
             "unlock"                "ctrl + g"
-            "new pane"              "Ctrl + n || ctrl + g + p + n"
-            "change focus of pane"  "Ctrl + hjkl || ctrl + g + p + arrow key"
+            "new pane"              "Alt + n || ctrl + g + p + n"
+            "change focus of pane"  "Alt + hjkl || ctrl + g + p + arrow key"
             "close pane"            "ctrl + g + p + x"
             "rename pane"           "ctrl + g + p + c"
             "toggle fullscreen"     "ctrl + g + p + f"
-            "toggle floating pane"  "Ctrl + f || ctrl + g + p + w"
+            "toggle floating pane"  "Alt + f || ctrl + g + p + w"
             "toggle embed pane"     "ctrl + g + p + e"
             "choose right pane"     "ctrl + g + p + l"
             "choose left pane"      "ctrl + g + p + r"
@@ -210,43 +206,45 @@ keybinds clear-defaults=true {
             floating true
             }
         }
-        bind "Ctrl +" { Resize "Increase"; }
-        bind "Ctrl -" { Resize "Decrease"; }
-        bind "Ctrl =" { Resize "Increase"; }
-        bind "Ctrl [" { PreviousSwapLayout; }
-        bind "Ctrl ]" { NextSwapLayout; }
-        bind "Ctrl f" { ToggleFloatingPanes; }
-        bind "Ctrl h" {
+        bind "Alt +" { Resize "Increase"; }
+        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt =" { Resize "Increase"; }
+        bind "Alt [" { PreviousSwapLayout; }
+        bind "Alt ]" { NextSwapLayout; }
+        unbind "Alt Left"
+        unbind "Alt Right"
+        bind "Alt f" { ToggleFloatingPanes; }
+        bind "Alt h" {
             MessagePlugin "file:~/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus_or_tab";
                 payload "left";
-                move_mod "ctrl";
+                move_mod "alt";
             };
         }
-        bind "Ctrl i" { MoveTab "left"; }
-        bind "Ctrl j" {
+        bind "Alt i" { MoveTab "left"; }
+        bind "Alt j" {
             MessagePlugin "file:~/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus";
                 payload "down";
-                move_mod "ctrl";
+                move_mod "alt";
             };
         }
-        bind "Ctrl k" {
+        bind "Alt k" {
             MessagePlugin "file:~/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus";
                 payload "up";
-                move_mod "ctrl";
+                move_mod "alt";
             };
         }
-        bind "Ctrl l" {
+        bind "Alt l" {
             MessagePlugin "file:~/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus_or_tab";
                 payload "right";
-                move_mod "ctrl";
+                move_mod "alt";
             };
         }
-        bind "Ctrl n" { NewPane; }
-        bind "Ctrl o" { MoveTab "right"; }
+        bind "Alt n" { NewPane; }
+        bind "Alt o" { MoveTab "right"; }
     }
     shared_except "locked" "renametab" "renamepane" {
         bind "Ctrl g" { SwitchToMode "locked"; }

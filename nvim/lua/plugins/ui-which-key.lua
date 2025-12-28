@@ -10,9 +10,6 @@ return {
     preset = "modern",
     win = {
       border = "single",
-      wo = {
-        winblend = 0,
-      },
     },
   },
 }

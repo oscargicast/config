@@ -9,7 +9,7 @@ theme = Atom One Dark
 minimum-contrast = 1.15
 
 # Opacity and blur (70% transparency => 0.3)
-background-opacity = 0.7
+background-opacity = 0.9
 background-blur-radius = 10
 
 # Usar fullscreen no-nativo para mantener transparencia
@@ -56,8 +56,31 @@ window-colorspace = display-p3
 # Integrar tabs en la barra de título (look nativo y limpio)
 macos-titlebar-style = tabs
 
-# Option NO es Alt, permitiendo tildes y caracteres especiales (Option+e, Option+n)
-# Zellij ahora usa Ctrl en lugar de Alt
+# Option actúa como Alt para navegación (zellij/nvim)
+# Tildes ahora con Ctrl+e seguido de vocal, Ctrl+n seguido de n
+
+# Option actúa como Alt/Meta para navegación en zellij/nvim
+macos-option-as-alt = true
+
+# Keybindings para tildes (movidos desde Option+e/n a Ctrl+e/n)
+# Vocales con tilde aguda
+keybind = ctrl+e>a=text:á
+keybind = ctrl+e>e=text:é
+keybind = ctrl+e>i=text:í
+keybind = ctrl+e>o=text:ó
+keybind = ctrl+e>u=text:ú
+keybind = ctrl+e>shift+a=text:Á
+keybind = ctrl+e>shift+e=text:É
+keybind = ctrl+e>shift+i=text:Í
+keybind = ctrl+e>shift+o=text:Ó
+keybind = ctrl+e>shift+u=text:Ú
+# Eñe
+keybind = ctrl+n>n=text:ñ
+keybind = ctrl+n>shift+n=text:Ñ
+
+# Forzar secuencias CSI para Option+Arrow (evitar ESC+b/f que colisionan con zellij)
+keybind = alt+left=csi:1;3D
+keybind = alt+right=csi:1;3C
 
 # Guardar y restaurar estado de ventanas
 window-save-state = always
@@ -99,3 +122,11 @@ quit-after-last-window-closed = true
 confirm-close-surface = true
 
 keybind = cmd+shift+f=toggle_maximize
+
+################################
+# Kitty Graphics Protocol
+################################
+
+# Enable Kitty graphics protocol support
+# Required for image rendering in Neovim with Snacks
+image-storage-limit = 320000000
