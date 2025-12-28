@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# Smart wrapper for ImageMagick that redirects SVG to rsvg-convert
+
+# Check if this is an SVG file
+is_svg=false
+input_file=""
+
+for arg in "$@"; do
+  # Check if argument is a file that exists and is SVG
+  if [[ -f "$arg" ]] || [[ "$arg" =~ ^(.+)\[.*\]$ ]]; then
+    # Remove [page] specifier if present
+    clean_file="${arg%\[*\]}"
+    if [[ -f "$clean_file" ]] && [[ "$clean_file" =~ \.svg$ ]]; then
+      is_svg=true
+      input_file="$clean_file"
+      break
+    fi
+  fi
+done
+
+# If SVG, use rsvg-convert
+if [[ "$is_svg" == "true" ]]; then
+  output_file=""
+  density="192"
+
+  # Parse arguments to extract output file and density
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -write)
+        output_file="$2"
+        shift 2
+        ;;
+      -density)
+        density="$2"
+        shift 2
+        ;;
+      *)
+        shift
+        ;;
+    esac
+  done
+
+  # Calculate width from density
+  width=$((density * 5))
+
+  # Get directory where this script is located
+  script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  stylesheet="$script_dir/svg-static.css"
+
+  # Use rsvg-convert with CSS override to handle animated SVGs
+  if [[ -f "$stylesheet" ]]; then
+    /opt/homebrew/bin/rsvg-convert --stylesheet "$stylesheet" -w "$width" -f png "$input_file" -o "$output_file"
+  else
+    /opt/homebrew/bin/rsvg-convert -w "$width" -f png "$input_file" -o "$output_file"
+  fi
+
+  # Create .info file for Snacks
+  if [[ -f "$output_file" ]]; then
+    dims=$(/opt/homebrew/bin/magick identify -format "%m %wx%h %xx%y" "$output_file" 2>/dev/null)
+    if [[ -n "$dims" ]]; then
+      echo "$dims" > "${output_file}.info"
+    fi
+  fi
+else
+  # For non-SVG, use real ImageMagick
+  exec /opt/homebrew/bin/magick "$@"
+fi

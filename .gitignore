@@ -1,0 +1,13 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+node_modules
+package.json
+bun.lock
+.claude/
+CLAUDE.md

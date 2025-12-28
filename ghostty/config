@@ -1,0 +1,101 @@
+################################
+# Apariencia / Tema
+################################
+
+# Tema Dracula
+theme = Atom One Dark
+
+# Forzar buen contraste mínimo (sube/baja si lo sientes muy fuerte)
+minimum-contrast = 1.15
+
+# Opacity and blur (70% transparency => 0.3)
+background-opacity = 0.7
+background-blur-radius = 10
+
+# Usar fullscreen no-nativo para mantener transparencia
+# (en lugar del fullscreen nativo de macOS que deshabilita transparencia)
+fullscreen = true
+macos-non-native-fullscreen = true
+
+################################
+# Fuente
+################################
+
+# MesloLGL Nerd Font Mono - excelente para iconos y símbolos
+font-family = "FiraCode Nerd Font"
+font-size = 16
+
+# Activa ligaduras y features tipográficos
+font-feature = liga, calt, dlig
+
+# Engrosar un poco la fuente (útil en pantallas Retina)
+font-thicken = true
+
+################################
+# Ventana y layout
+################################
+
+# Tamaño inicial (ajústalo a gusto)
+window-width = 120
+window-height = 32
+
+# Padding interno para que no "pegue" al borde
+window-padding-x = 16
+window-padding-y = 12
+
+# Compensa padding para que no quede un "hueco" desigual
+window-padding-balance = true
+
+# Espacio de color amplio para mejores colores en monitores modernos
+window-colorspace = display-p3
+
+################################
+# macOS específico
+################################
+
+# Integrar tabs en la barra de título (look nativo y limpio)
+macos-titlebar-style = tabs
+
+# Option NO es Alt, permitiendo tildes y caracteres especiales (Option+e, Option+n)
+# Zellij ahora usa Ctrl en lugar de Alt
+
+# Guardar y restaurar estado de ventanas
+window-save-state = always
+
+# Vsync para evitar tearing
+window-vsync = true
+
+################################
+# Cursor y selección
+################################
+
+# Cursor que parpadea y bien visible
+cursor-style = block
+cursor-style-blink = true
+
+# Colores de selección/cursor (dejan ver bien el texto)
+cursor-color = #f5e0dc
+selection-background = #51576d
+selection-foreground = #ffffff
+
+################################
+# Shell / integración
+################################
+
+# Usa tu shell (zsh por defecto en macOS) como login shell
+command = /bin/zsh
+
+# Habilita integración extra con el shell (OSC, marks, etc.)
+shell-integration-features = true
+
+################################
+# Comportamiento general
+################################
+
+# Cierra la app cuando se cierra la última ventana
+quit-after-last-window-closed = true
+
+# Confirmar al cerrar ventanas con procesos corriendo
+confirm-close-surface = true
+
+keybind = cmd+shift+f=toggle_maximize

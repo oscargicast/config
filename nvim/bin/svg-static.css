@@ -1,0 +1,7 @@
+/* Override CSS animations for static SVG rendering */
+* {
+  stroke-dashoffset: 0 !important;
+  stroke-dasharray: none !important;
+  animation: none !important;
+  transition: none !important;
+}
